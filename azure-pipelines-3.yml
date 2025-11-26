@@ -1,0 +1,19 @@
+trigger:
+  - main
+
+pool:
+  name: 'MiAgente-Pool'
+
+stages:
+  - stage: Deploy
+    displayName: 'Deploy to Azure'
+    jobs:
+      - job: DeployWeb
+        displayName: 'Deploy Web App'
+        steps:
+          - task: AzureWebApp@1
+            displayName: 'Deploy to Azure Web App'
+            inputs:
+              azureSubscription: 'Conection'
+              appName: 'AppWeb'
+              package: '$(System.ArtifactsDirectory)/drop'
