@@ -4,28 +4,28 @@ pool:
   name: 'MiAgente-Pool'
 
 steps:
-- script: |
-    echo "Hello from Ubuntu Agent!"
-    uname -a
-    whoami
-  displayName: 'Run on Self-Hosted Agent'
+  - script: |
+      echo "Hello from Ubuntu Agent!"
+      uname -a
+      whoami
+    displayName: 'Run on Self-Hosted Agent'
 
-- task: AzureCLI@2
-  displayName: "Pipeline de práctica - Recurso GRATIS"
-  inputs:
-    azureSubscription: 'ServCon'
-    scriptType: bash
-    scriptLocation: inlineScript
-    inlineScript: |
-      RG_NAME="RecursosPipeline"
-      STORAGE_NAME="stpractica$RANDOM"
-      LOCATION="eastus"
+  - task: AzureCLI@2
+    displayName: "Pipeline de práctica - Recurso GRATIS"
+    inputs:
+      azureSubscription: 'ServCon'
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        RG_NAME="RecursosPipeline"
+        STORAGE_NAME="stpractica$RANDOM"
+        LOCATION="eastus"
 
-      echo "Creando Storage Account vacía..."
-      az storage account create \
-        --name $STORAGE_NAME \
-        --resource-group $RG_NAME \
-        --location $LOCATION \
-        --sku Standard_LRS
+        echo "Creando Storage Account vacía..."
+        az storage account create \
+          --name $STORAGE_NAME \
+          --resource-group $RG_NAME \
+          --location $LOCATION \
+          --sku Standard_LRS
 
-      echo "Storage Account creada: $STORAGE_NAME (sin costo mientras no guardes archivos)"
+        echo "Storage Account creada: $STORAGE_NAME"
