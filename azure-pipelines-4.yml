@@ -17,7 +17,7 @@ steps:
     scriptType: bash
     scriptLocation: inlineScript
     inlineScript: |
-      RG_NAME="rg-practica-dev"
+      RG_NAME="RecursosPipeline"
       STORAGE_NAME="stpractica$RANDOM"
       LOCATION="eastus"
 
